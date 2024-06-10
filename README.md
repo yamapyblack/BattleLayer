@@ -1,38 +1,86 @@
-# PlasmaBattle
+# BattleLayer
 
 
-![PlasmaBattle-logo](https://raw.githubusercontent.com/yamapyblack/PlasmaBattle/main/frontend/public/PlasmaBattle-logo.png)
 
-A starategic game with infinite scalablity
+BattleLayer offers both high security and a good user experience with a hybrid engine combining onchain and offchain, making blockchain gaming accessible to developers and mass users.
 
 ## Demo
 
-https://plasma-battle.vercel.app/
+[https://battle-layer.vercel.app/](https://battle-layer.vercel.app/)
 
 ## Description
 
-**Does an onchain game have to be fully onchain?**
+**What is the BattleLayer?**
 
-I'm an onchain maxi, but I disagree with the question. Let's consider Layer2 and Plasma. These technologies mean that not all transactions are necessary on Ethereum L1. Layer2 and Plasma try to make Ethereum's scalable with minimizing risks.
+BattleLayer is a game layer equipped with a Hybrid Engine that incorporates both Onchain and Offchain functionalities. This system enables developers to create high-security blockchain games with an good user experience.
 
-Similarly, it's not necessary to put all game logic onchain. The Plasma architecture, which is implemented in this game, is a stateless design intended for a risk-minimized hybrid app. It enables an authentic, complex simulation game on the mainnet.
+**What is the Hybrid Engine?**
 
-PlasmaBattle will open the door to mass adoption for onchain games.
+We believe that the currently prevalent offchain games hold inherent centralization risks. However, creating fully onchain games leads to poor user experiences. Therefore, we have devised a system that combines both offchain and onchain.
 
+Our approach is inspired by Plasma, which has recently gained renewed attention on Ethereum L2. Plasma writes the final state to L1 while processing the intermediate steps offchain. Similarly, we designed our system to record the battle results onchain, while the process itself is handled offchain.
 
-## Architecture
+In the Hybrid Engine, users will only write the initial state, final state, and random number seed onchain.
 
-![PlasmaBattle-architecutre](https://github.com/yamapyblack/PlasmaBattle/blob/main/frontend/public/images/lp/PlasmaBattle-architecutre.png?raw=true)
+While this does not entirely eliminate centralization risks, it significantly limits the risk scope. In exchange, we gain an infinitely scalable game.
 
-The necessary information for onchain is only required at the start and at the end; the computing of the middle phase is offchain. The battle result is determined by the computation of the game master. Some criticize this as centralization, but in fact, the risk is quite minimal.
+Currently, the Hybrid Engine can be applied only to auto-battle style games.
 
-The battle logic can be computed by anyone because the source code is open, so any mistakes by the game master can be pointed out.
+**The Potential of Hybrid Games to Reach Mass Users**
 
-Users only need to send two transactions, at the beginning and at the end, using the Plasma Architecture. This architecture makes onchain games infinitely scalable.
+BattleLayer is fully open-source, allowing any developer to utilize this system. Take AutoChess, for instance: the game is popular and still played on various platforms. Playing such a game with owned assets would offer a more exciting gaming experience.
 
-## Contract addresses(Scroll sepolia)
+Hybrid Games can expand the potential of blockchain games, reaching a mass that has yet to experience blockchain gaming.
 
-PlasmaBattle
+## Contract addresses(base sepolia)
 
-https://sepolia.scrollscan.com/address/0xc7Bab26f78A8ac0C573B0670D85c590aF3dD9Fa4
+Battle
+
+[https://basescan.org/address/0x37f6c278888e3a826a7341727d06c062c67dea1a](https://basescan.org/address/0x37f6c278888e3a826a7341727d06c062c67dea1a)
+
+## Contract Deployment
+
+```
+cd onchain
+```
+
+Enviroment
+
+.env (This is admin signer address)
+
+```
+WALLET_PRIVATE_KEY=0x...
+```
+
+Deploy
+
+```
+forge script script/PlasmaBattleAlpha.s.sol --broadcast --fork-url https://sepolia.base.org verifyContract --verify --etherscan-api-key xxxxx(API_KEY)
+```
+
+## Frontend
+
+```
+cd frontend
+```
+
+Enviroment
+
+.env (Same as onchain's signer address)
+
+```
+PRIVATE_KEY=0x...
+```
+
+Install
+
+```
+bun install
+```
+
+Start
+
+```
+bun run dev
+```
 
