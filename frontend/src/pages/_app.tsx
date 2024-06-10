@@ -21,7 +21,7 @@ const config = createConfig(
       //   zkSyncSepoliaTestnet.rpcUrls.default.http[0]
       // ),
       // [base.id]: http(base.rpcUrls.default.http[0]),
-      [baseSepolia.id]: http(base.rpcUrls.default.http[0]),
+      [baseSepolia.id]: http(baseSepolia.rpcUrls.default.http[0]),
     },
     // Required API Keys
     walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
