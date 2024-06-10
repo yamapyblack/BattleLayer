@@ -9,13 +9,13 @@ import "../styles/global.css";
 const config = createConfig(
   getDefaultConfig({
     // Your dApps chains
-    chains: [scrollSepolia],
+    chains: [base],
     transports: {
-      [scrollSepolia.id]: http(scrollSepolia.rpcUrls.default.http[0]),
+      // [scrollSepolia.id]: http(scrollSepolia.rpcUrls.default.http[0]),
       // [zkSyncSepoliaTestnet.id]: http(
       //   zkSyncSepoliaTestnet.rpcUrls.default.http[0]
       // ),
-      // [base.id]: http(base.rpcUrls.default.http[0]),
+      [base.id]: http(base.rpcUrls.default.http[0]),
     },
     // Required API Keys
     walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
