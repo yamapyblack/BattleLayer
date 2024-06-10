@@ -48,7 +48,7 @@ export const getWagmiConfig = (chainId: number) => {
       return createConfig({
         chains: [baseSepolia],
         transports: {
-          [baseSepolia.id]: http(base.rpcUrls.default.http[0]),
+          [baseSepolia.id]: http(baseSepolia.rpcUrls.default.http[0]),
         },
       });
     default:
