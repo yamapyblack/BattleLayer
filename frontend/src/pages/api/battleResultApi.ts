@@ -12,7 +12,12 @@ import { enemyUnitsByStage } from "src/constants/init";
 import { units } from "src/constants/units";
 import { convertUnitIdsToNumber } from "src/utils/Utils";
 import { createConfig, http } from "wagmi";
-import { scrollSepolia, zkSyncSepoliaTestnet, base } from "wagmi/chains";
+import {
+  scrollSepolia,
+  zkSyncSepoliaTestnet,
+  base,
+  baseSepolia,
+} from "wagmi/chains";
 
 export const getWagmiConfig = (chainId: number) => {
   switch (chainId) {
@@ -37,6 +42,13 @@ export const getWagmiConfig = (chainId: number) => {
         chains: [base],
         transports: {
           [base.id]: http(base.rpcUrls.default.http[0]),
+        },
+      });
+    case baseSepolia.id:
+      return createConfig({
+        chains: [baseSepolia],
+        transports: {
+          [baseSepolia.id]: http(base.rpcUrls.default.http[0]),
         },
       });
     default:

@@ -16,7 +16,7 @@ export const units: { [key: number]: Unit } = {
     life: 3,
     attack: 3,
     description: "",
-    skillIds: [1],
+    skillIds: [],
   },
   2: {
     id: 2,

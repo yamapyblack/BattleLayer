@@ -18,7 +18,6 @@ const OverScenes = ({ result, battleId, setTutorial, stage, setStage }) => {
   // const [battleId, setBattleId] = useState<number>(-1);
   const [battleResult, setBattleResult] = useState<any>(BigInt(0));
   const [signature, setSignature] = useState<string>("");
-  const [isShowBtn, setIsShowBtn] = useState<boolean>(false);
   const [isMinted, setIsMinted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -38,9 +37,7 @@ const OverScenes = ({ result, battleId, setTutorial, stage, setStage }) => {
   }, [chainId, battleId, address, result]);
 
   const { write, isLoading } = useWriteEndBattle(
-    () => {},
     () => {
-      setIsShowBtn(true);
       if (stage === maxStage) {
         setIsMinted(true);
       } else {
@@ -50,9 +47,11 @@ const OverScenes = ({ result, battleId, setTutorial, stage, setStage }) => {
           setTutorial(TUTORIAL.ReverseUnit);
         }
         setStage(stage + 1);
-        //If battle result is win, back to edit scene without url parameters
-        router.push(router.pathname);
       }
+    },
+    () => {
+      //If battle result is win, back to edit scene without url parameters
+      router.push(router.pathname);
     },
     battleId,
     battleResult,
@@ -108,30 +107,26 @@ const OverScenes = ({ result, battleId, setTutorial, stage, setStage }) => {
         </section>
         <section className="mt-16 mb-8">
           <div className="text-center">
-            {isShowBtn ? (
-              <></>
-            ) : (
-              <>
-                {result != RESULT.WIN ? (
+            <>
+              {result != RESULT.WIN ? (
+                <ButtonComponent
+                  write={() => {
+                    router.push("/");
+                  }}
+                  isLoading={false}
+                  text={"CONTINUE"}
+                />
+              ) : (
+                battleResult &&
+                !isMinted && (
                   <ButtonComponent
-                    write={() => {
-                      router.push("/");
-                    }}
-                    isLoading={false}
-                    text={"CONTINUE"}
+                    write={write}
+                    isLoading={isLoading}
+                    text={"CONFIRM"}
                   />
-                ) : (
-                  battleResult &&
-                  !isMinted && (
-                    <ButtonComponent
-                      write={write}
-                      isLoading={isLoading}
-                      text={"CONFIRM"}
-                    />
-                  )
-                )}
-              </>
-            )}
+                )
+              )}
+            </>
           </div>
         </section>
       </main>

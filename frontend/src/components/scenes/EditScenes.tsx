@@ -107,6 +107,7 @@ const EditScenes = ({
   }, [dataPlayerUnits]);
 
   useEffect(() => {
+    console.log("dataSubUnits", dataSubUnits);
     if (dataSubUnits) {
       const _subUnitIds = convertUnitIdsToNumber(dataSubUnits as BigInt[]);
       setSubUnitIds(_subUnitIds);
