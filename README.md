@@ -1,6 +1,6 @@
 # BattleLayer
 
-
+![logo](https://github.com/yamapyblack/BattleLayer/blob/main/frontend/public/favicon.ico?raw=true)
 
 BattleLayer offers both high security and a good user experience with a hybrid engine combining onchain and offchain, making blockchain gaming accessible to developers and mass users.
 
@@ -16,17 +16,25 @@ BattleLayer is a game layer equipped with a Hybrid Engine that incorporates both
 
 **What is the Hybrid Engine?**
 
+![mirror_cover](https://github.com/yamapyblack/BattleLayer/blob/main/frontend/public/images/lp/mirror_cover.png?raw=true)
+
 We believe that the currently prevalent offchain games hold inherent centralization risks. However, creating fully onchain games leads to poor user experiences. Therefore, we have devised a system that combines both offchain and onchain.
 
 Our approach is inspired by Plasma, which has recently gained renewed attention on Ethereum L2. Plasma writes the final state to L1 while processing the intermediate steps offchain. Similarly, we designed our system to record the battle results onchain, while the process itself is handled offchain.
 
 In the Hybrid Engine, users will only write the initial state, final state, and random number seed onchain.
 
+![plasma-formula](https://github.com/yamapyblack/BattleLayer/blob/main/frontend/public/images/lp/plasma-formula.png?raw=true)
+
+![PlasmaBattle-architecutre](https://github.com/yamapyblack/BattleLayer/blob/main/frontend/public/images/lp/PlasmaBattle-architecutre.png?raw=true)
+
 While this does not entirely eliminate centralization risks, it significantly limits the risk scope. In exchange, we gain an infinitely scalable game.
 
 Currently, the Hybrid Engine can be applied only to auto-battle style games.
 
 **The Potential of Hybrid Games to Reach Mass Users**
+
+![massOverthere](https://github.com/yamapyblack/BattleLayer/blob/main/frontend/public/images/lp/massOverthere.jpeg?raw=true)
 
 BattleLayer is fully open-source, allowing any developer to utilize this system. Take AutoChess, for instance: the game is popular and still played on various platforms. Playing such a game with owned assets would offer a more exciting gaming experience.
 
