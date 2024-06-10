@@ -37,7 +37,8 @@ const EditScenes = ({
   const [subUnitIds, setSubUnitIds] = useState<number[]>([]);
 
   //battleId
-  const [latestBattleId, setLatestBattleId] = useState<BigInt | null>(null);
+  const [latestBattleId, setLatestBattleId] = useState<BigInt>(BigInt(0));
+  const [isSentTransaction, setSentTransaction] = useState(false);
 
   //Set dragged and dropped unit for replacing
   const [draggedIndex, setDraggedIndex] = useState<DragAndDrop | null>(null);
@@ -115,20 +116,17 @@ const EditScenes = ({
   //Initialize and refetch latestBattleId
   useEffect(() => {
     if (dataLatestBattleId) {
-      if (latestBattleId === null) {
-        setLatestBattleId(dataLatestBattleId);
-        console.log("initialize latestBattleId", dataLatestBattleId);
-      } else if (dataLatestBattleId !== latestBattleId) {
-        console.log(
-          "old and new latestBattleId",
-          latestBattleId,
-          dataLatestBattleId
-        );
+      // After start tx, if the latestBattleId is different from the latestBattleId, redirect to the battle scene
+      if (isSentTransaction && dataLatestBattleId !== latestBattleId) {
         const currentUrl = window.location.href;
         window.location.href = `${currentUrl}?battle_id=${Number(dataLatestBattleId)}`;
+      } else if (latestBattleId === BigInt(0)) {
+        //Initialize latestBattleId, but if latestBattleId is 0, cannot getting by onchain
+        setLatestBattleId(dataLatestBattleId);
+        console.log("initialize latestBattleId", dataLatestBattleId);
       }
     }
-  }, [dataLatestBattleId, latestBattleId]);
+  }, [dataLatestBattleId, latestBattleId, isSentTransaction]);
 
   //Replace unit position if dragged and dropped
   useEffect(() => {
@@ -324,6 +322,7 @@ const EditScenes = ({
                     return;
                   }
                   if (isLoadingStart) return;
+                  setSentTransaction(true);
                   writeStart();
                 }}
                 isLoading={isLoadingStart} //once transaction is sent, isLoading is true
